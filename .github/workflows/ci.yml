@@ -16,7 +16,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:   
+  build:
   runs-on: ubuntu-latest
   steps:
     - uses: actions/checkout@v3
@@ -24,4 +24,9 @@ jobs:
     - name: Run markdown lint
       run: |
         npm install remark-cli remark-preset-lint-consistent
-        npx remark . --use remark-preset-lint-consistent --frail    
+        npx remark . --use remark-preset-lint-consistent --frail
+
+    - uses: actions/upload-artifact@v3
+      with:
+        name: remark-lint-report
+        path: public/    
